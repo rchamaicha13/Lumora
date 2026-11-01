@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumora — A smarter way to learn</title>
+<style>
+:root{--green:#123d32;--green2:#1b5948;--gold:#d8b45b;--cream:#f7f5ed;--mint:#e8f1eb;--ink:#20342d}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+header{background:var(--green);color:white;padding:22px 18px;text-align:center;border-bottom:4px solid var(--gold)}
+.brand{font-size:30px;font-weight:800;letter-spacing:1px}.tag{color:#e8d7a7;margin-top:5px;font-size:13px}
+main{max-width:760px;margin:28px auto;padding:0 16px}.panel{background:white;border:1px solid #e5e5dc;border-radius:18px;padding:22px;box-shadow:0 8px 28px #163d3210}
+h1{font-size:22px;margin:0 0 8px;color:var(--green)}.sub{color:#66766e;line-height:1.7;margin:0 0 20px}
+label{display:block;font-weight:700;margin:14px 0 7px;font-size:14px}
+input,select,textarea{width:100%;border:1px solid #d8dfd8;border-radius:11px;padding:12px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+button{border:0;border-radius:12px;padding:13px 18px;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:var(--green);color:white;width:100%;margin-top:20px}.primary:hover{background:var(--green2)}
+.secondary{background:var(--mint);color:var(--green)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none!important}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.pill{border:1px solid #d8dfd8;border-radius:999px;padding:9px 12px;background:white;cursor:pointer;font-size:13px}.pill.active{background:var(--mint);border-color:var(--green);color:var(--green);font-weight:bold}
+.note{font-size:12px;color:#68766e;line-height:1.7;margin-top:14px}.chatbox{background:#f5f8f4;border-radius:14px;padding:16px;white-space:pre-wrap;line-height:1.85;min-height:80px;margin-top:16px}.status{font-size:13px;color:#64756c;margin-top:10px}
+footer{text-align:center;color:#77847d;font-size:12px;padding:20px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:18px}.brand{font-size:27px}}
+</style>
+</head>
+<body>
+<header><div class="brand">Lumora</div><div class="tag">A smarter way to learn</div></header>
+<main>
+<section id="profile" class="panel">
+<h1>مرحباً بك في Lumora</h1>
+<p class="sub">لنبدأ بمعلومات بسيطة حتى نكيّف الشروحات مع مستواك ونظامك الدراسي.</p>
+<label for="username">اسم المستخدم (اختياري)</label><input id="username" placeholder="اسم مستعار أو اسم تختاره">
+<div class="grid">
+<div><label for="country">البلد</label><select id="country"><option value="">اختر البلد</option><option>المغرب</option><option>فرنسا</option><option>الجزائر</option><option>تونس</option><option>مصر</option><option>السعودية</option><option>الإمارات</option><option>بلد آخر</option></select></div>
+<div><label for="level">المستوى الدراسي</label><select id="level"><option value="">اختر المستوى</option><option>الابتدائي</option><option>الإعدادي / collège</option><option>الثانوي</option><option>الجامعة</option><option>مستوى آخر</option></select></div>
+</div>
+<label for="language">لغة الشرح المفضلة</label><select id="language"><option>العربية</option><option>الفرنسية</option><option>الإنجليزية</option></select>
+<button class="primary" id="goLesson">متابعة</button>
+<p class="note">لا تكتب اسمك الكامل أو معلومات شخصية حساسة. لا يحفظ هذا النموذج بياناتك في قاعدة بيانات.</p>
+</section>
+
+<section id="lesson" class="panel hidden">
+<h1>ماذا تريد أن تتعلم اليوم؟</h1>
+<p class="sub">اختر المادة والدرس، ثم حدّد نوع المساعدة التي تحتاجها.</p>
+<div class="grid">
+<div><label for="subject">المادة</label><select id="subject"><option>الرياضيات</option><option>اللغة الفرنسية</option><option>اللغة العربية</option><option>علوم الحياة والأرض</option><option>الفيزياء والكيمياء</option><option>الاجتماعيات</option><option>اللغة الإنجليزية</option><option>مادة أخرى</option></select></div>
+<div><label for="topic">عنوان الدرس</label><input id="topic" placeholder="مثلاً: التنفس عند الإنسان"></div>
+</div>
+<label>نوع المساعدة</label>
+<div class="pillrow" id="modes">
+<button class="pill active" data-mode="شرح مبسط">شرح مبسط</button><button class="pill" data-mode="شرح مفصل">شرح مفصل</button><button class="pill" data-mode="ملخص">ملخص</button><button class="pill" data-mode="أسئلة للمراجعة">أسئلة للمراجعة</button><button class="pill" data-mode="تمارين">تمارين</button><button class="pill" data-mode="امتحان تجريبي">امتحان تجريبي</button><button class="pill" data-mode="محادثة حرة مع المعلّم">محادثة حرة</button>
+</div>
+<label for="extra">تفاصيل إضافية أو نص من الدرس (اختياري)</label><textarea id="extra" placeholder="اكتب سؤالك أو الصق جزءاً من الدرس هنا..."></textarea>
+<button class="primary" id="ask">اسأل معلّم Lumora الذكي</button>
+<button class="secondary" id="back" style="width:100%;margin-top:10px">العودة إلى معلوماتي</button>
+<div id="status" class="status" aria-live="polite"></div><div id="answer" class="chatbox hidden" aria-live="polite"></div>
+</section>
+</main>
+<footer>لومورا — التعلّم خطوة بخطوة</footer>
+<script>
+let mode='شرح مبسط', profile={};
+const $=id=>document.getElementById(id);
+$('goLesson').onclick=()=>{
+ const country=$('country').value, level=$('level').value;
+ if(!country||!level){alert('يرجى اختيار البلد والمستوى الدراسي أولاً.');return}
+ profile={username:$('username').value.trim(),country,level,language:$('language').value};
+ $('profile').classList.add('hidden');$('lesson').classList.remove('hidden');window.scrollTo(0,0);
+};
+$('back').onclick=()=>{$('lesson').classList.add('hidden');$('profile').classList.remove('hidden');window.scrollTo(0,0)};
+document.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode});
+$('ask').onclick=async()=>{
+ const topic=$('topic').value.trim(), extra=$('extra').value.trim();
+ if(!topic&&!extra){alert('اكتب عنوان الدرس أو سؤالك أولاً.');return}
+ $('status').textContent='يفكر معلّم Lumora الآن...';$('answer').classList.add('hidden');$('ask').disabled=true;
+ try{
+  const res=await fetch('/api/learn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...profile,subject:$('subject').value,topic,mode,extra})});
+  const data=await res.json();
+  if(!res.ok)throw new Error(data.error||'تعذر الحصول على إجابة.');
+  $('answer').textContent=data.answer||'لم تصل إجابة. حاول مرة أخرى.';$('answer').classList.remove('hidden');$('status').textContent='إجابة من معلّم Lumora';
+ }catch(e){$('status').textContent=e.message.includes('429')?'وصلنا إلى الحد المجاني مؤقتاً. حاول لاحقاً.':e.message;$('answer').classList.remove('hidden');$('answer').textContent='إذا لم يتم إعداد الاتصال بالذكاء الاصطناعي بعد، فهذه نسخة تجريبية تحتاج إلى إعداد الخادم ومفتاح Gemini بشكل آمن.'}
+ finally{$('ask').disabled=false}
+};
+</script>
+</body></html>
